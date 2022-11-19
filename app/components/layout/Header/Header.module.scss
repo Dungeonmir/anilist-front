@@ -1,0 +1,138 @@
+$color-gray-100: #dadada;
+$color-orange-100: #fab818;
+
+@mixin text-is-xs() {
+    line-height: 0.875rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+}
+
+@mixin is-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    flex: 0 0 3.75rem;
+    min-width: 20rem;
+    position: relative;
+    color: white;
+
+    .content {
+        align-items: stretch;
+        background-color: #23252b;
+        display: flex;
+        height: 3.75rem;
+        justify-content: space-between;
+        left: 0;
+        right: 0;
+        min-width: 20rem;
+        position: fixed;
+        z-index: 100;
+
+        .logo_wrapper {
+            display: flex;
+            justify-content: flex-end;
+            flex: 0 1 13.75rem;
+            height: 100%;
+
+            .logo {
+                display: block;
+                height: inherit;
+                padding: 0 1.125rem;
+
+                .logo_icon {
+                    width: 8.5rem;
+                    fill: #f47521;
+                    display: block;
+                    height: inherit;
+                    transition: fill 0.2s ease;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+
+    .tile {
+        @include is-center();
+        cursor: pointer;
+
+        color: $color-gray-100;
+
+        padding-left: 1rem;
+        padding-right: 1rem;
+        transition: background-color 0.1s cubic-bezier(0, 0, 0.25, 1);
+
+        &:hover {
+            background-color: #141519;
+        }
+    }
+
+    .svg {
+        align-items: center;
+        color: #dadada;
+        display: flex;
+        justify-content: center;
+        padding: 0 0.3125rem;
+
+        .icon {
+            fill: currentColor;
+            height: 1.5rem;
+            transition: fill .2s ease;
+        }
+    }
+
+    .left {
+        display: flex;
+        flex: 0 1 65.625rem;
+        order: 0;
+
+
+        span {
+            font-family: Lato, Helvetica Neue, helvetica, sans-serif;
+            font-weight: 500;
+            user-select: none;
+            --line-height: 1.5rem;
+            font-size: 1rem;
+        }
+    }
+
+    .right {
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+
+        ul {
+            display: flex;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+
+            li {
+                list-style-type: none;
+                position: relative;
+                @include text-is-xs();
+
+                .icon_crown {
+                    fill: $color-orange-100;
+                    padding: 0 0.25rem;
+                    height: 2.5rem;
+                    transition: fill 0.2s ease;
+                }
+
+                .text_wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 0.25rem;
+                    text-transform: uppercase;
+
+                    .premium_header {
+                        color: $color-orange-100;
+                    }
+                }
+            }
+        }
+    }
+}
