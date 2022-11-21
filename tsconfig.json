@@ -25,7 +25,7 @@
 			"@/utils/*": ["utils/*"],
 			"@/assets/*": ["assets/*"],
 			"@/configs/*": ["configs/*"],
-			"@/store/*": ["store/*"]
+			"@/store/*": ["store/*"],
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

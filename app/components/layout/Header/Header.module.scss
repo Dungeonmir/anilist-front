@@ -1,17 +1,6 @@
-$color-gray-100: #dadada;
-$color-orange-100: #fab818;
-
-@mixin text-is-xs() {
-    line-height: 0.875rem;
-    font-size: 0.625rem;
-    font-weight: 600;
-}
-
-@mixin is-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@import '/styles/colors.scss';
+@import "/styles/mixins.scss";
+@import "/styles/variables.scss";
 
 .wrapper {
     display: flex;
@@ -34,9 +23,12 @@ $color-orange-100: #fab818;
 
         .logo_wrapper {
             display: flex;
-            justify-content: flex-end;
             flex: 0 1 13.75rem;
             height: 100%;
+
+            @include respond-to('large') {
+                justify-content: end;
+            }
 
             .logo {
                 display: block;
@@ -53,6 +45,30 @@ $color-orange-100: #fab818;
                 }
             }
         }
+
+        .hamburger {
+            align-items: center;
+            color: #dadada;
+            display: flex;
+            justify-content: center;
+            padding: 0 0.31rem;
+            order: -1;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            transition: background-color .1s cubic-bezier(0, 0, .25, 1);
+
+            cursor: pointer;
+
+            @include respond-to('large') {
+                display: none;
+            }
+
+            .hamburger_svg {
+                fill: currentColor;
+                height: 1.5rem;
+                transition: fill .2s ease;
+            }
+        }
     }
 
     .tile {
@@ -60,10 +76,10 @@ $color-orange-100: #fab818;
         cursor: pointer;
 
         color: $color-gray-100;
-
-        padding-left: 1rem;
-        padding-right: 1rem;
         transition: background-color 0.1s cubic-bezier(0, 0, 0.25, 1);
+
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
 
         &:hover {
             background-color: #141519;
@@ -85,10 +101,13 @@ $color-orange-100: #fab818;
     }
 
     .left {
-        display: flex;
+        display: none;
         flex: 0 1 65.625rem;
         order: 0;
 
+        @include respond-to('large') {
+            display: flex;
+        }
 
         span {
             font-family: Lato, Helvetica Neue, helvetica, sans-serif;
@@ -111,19 +130,107 @@ $color-orange-100: #fab818;
             height: 100%;
 
             li {
-                list-style-type: none;
                 position: relative;
                 @include text-is-xs();
+
+                .popup_body {
+                    display: none;
+
+                    @include respond-to('medium') {
+                        display: flex;
+                    }
+
+                    max-width: $popup-width;
+                    padding-top: 0.625rem;
+                    top: 3.75rem;
+                    z-index: -1;
+                    width: $popup-width;
+                    margin-right: calc(($popup-width/2)*-1);
+                    position: absolute;
+                    right: 50%;
+
+
+                    &:after {
+                        border: $arrow-size solid;
+                        border-color: #0000 #0000 #000;
+                        content: "";
+                        filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(89, 89, 91, .5));
+                        left: calc(50% - $arrow-size);
+                        position: absolute;
+                        top: 0.4rem;
+                        transform: translateY(-0.625rem);
+                        transition: transform .1s, opacity .1s cubic-bezier(0, 0, .25, 1), visibility 0s linear .1s;
+                        z-index: 1000;
+                    }
+
+
+                    .wrapper_content {
+                        display: flex;
+                        justify-content: center;
+                        background-color: #000;
+                        box-shadow: 0 0 0.375rem 0 #59595b80;
+                        overflow: hidden;
+                        text-align: center;
+                        padding: 1.5rem 2rem;
+
+                        .background {
+                            height: 100%;
+                            left: 0;
+                            position: absolute;
+                            top: 0;
+                            width: 100%;
+                            z-index: 0;
+                        }
+
+                        .content {
+                            height: 100%;
+                            background-color: #000;
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+
+                            >h3 {
+                                font-family: Lato, Helvetica Neue, helvetica, sans-serif;
+                                margin-bottom: 0.75rem;
+                                align-items: center;
+                                display: flex;
+                                justify-content: center;
+
+                                @include is-heading();
+                                @include heading-is-xxs();
+
+                                .premium_icon {
+                                    fill: #fff;
+                                    height: 1.5rem;
+                                    margin-right: 0.25rem;
+                                    width: 1.5rem;
+                                }
+                            }
+
+                            >p {
+                                text-rendering: auto;
+                                margin: 0;
+
+                                @include text-is-m();
+                                @include text-is-semibold();
+                            }
+                        }
+                    }
+                }
 
                 .icon_crown {
                     fill: $color-orange-100;
                     padding: 0 0.25rem;
-                    height: 2.5rem;
+                    height: 2rem;
                     transition: fill 0.2s ease;
                 }
 
                 .text_wrapper {
-                    display: flex;
+                    @include respond-to('medium') {
+                        display: flex;
+                    }
+
+                    display: none;
                     flex-direction: column;
                     margin-left: 0.25rem;
                     text-transform: uppercase;

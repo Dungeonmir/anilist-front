@@ -3,6 +3,9 @@ import React from 'react'
 import styles from './Header.module.scss'
 
 export default function Header() {
+	const [isVisible, setIsVisible] = React.useState(false)
+	const [isHamburgerMenu, setIsHamburgerMenu] = React.useState(false)
+
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.content}>
@@ -22,6 +25,20 @@ export default function Header() {
 						</svg>
 					</Link>
 				</div>
+				<div className={styles.hamburger}>
+					<svg
+						className={styles.hamburger_svg}
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						data-t="menu-svg"
+						aria-labelledby="menu-svg"
+						aria-hidden="true"
+						role="img"
+					>
+						<title id="menu-svg">Меню</title>
+						<path d="M21 4a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18zm0 7a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18zm0 7a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18z"></path>
+					</svg>
+				</div>
 
 				<div className={styles.left}>
 					<div className={styles.tile}>
@@ -40,7 +57,11 @@ export default function Header() {
 				<div className={styles.right}>
 					<div className={styles.user_action}>
 						<ul>
-							<li className={styles.tile}>
+							<li
+								className={styles.tile}
+								onMouseEnter={() => setIsVisible(true)}
+								onMouseLeave={() => setIsVisible(false)}
+							>
 								<svg
 									className={styles.icon_crown}
 									xmlns="http://www.w3.org/2000/svg"
@@ -59,6 +80,35 @@ export default function Header() {
 									</span>
 									<span>Премиум</span>
 								</div>
+								{isVisible && (
+									<div className={styles.popup_body}>
+										<div className={styles.wrapper_content}>
+											<div className={styles.background}></div>
+											<div className={styles.content}>
+												<h3>
+													<svg
+														className={styles.premium_icon}
+														xmlns="http://www.w3.org/2000/svg"
+														viewBox="0 0 24 24"
+														data-t="premium-svg"
+														aria-labelledby="premium-svg"
+														aria-hidden="true"
+														role="img"
+													>
+														<title id="premium-svg">Только Премиум</title>
+														<path d="M18.188 17l1.667-5.606-4.26 1.864L12 7.688l-3.596 5.57-4.259-1.864L5.812 17h12.376zm-14.08 1.285L1.614 9.9a1 1 0 0 1 1.36-1.2l4.673 2.045 3.512-5.442a1 1 0 0 1 1.68 0l3.514 5.442 4.674-2.046a1 1 0 0 1 1.36 1.201l-2.494 8.386a1 1 0 0 1-.959.715H5.067a1 1 0 0 1-.959-.715z"></path>
+													</svg>
+													14 дней бесплатно
+												</h3>
+												<p>
+													Премиум дает безлимитный доступ к аниме, новым сериям
+													через час после эфира в Японии, без рекламы.
+													Попробуйте!
+												</p>
+											</div>
+										</div>
+									</div>
+								)}
 							</li>
 							<li className={styles.tile}>
 								<div className={styles.svg}>

@@ -1,0 +1,59 @@
+@mixin text-is-xs() {
+    line-height: 0.875rem;
+    font-size: 0.625rem;
+    font-weight: 600;
+}
+
+@mixin heading-is-xxs() {
+    line-height: 1.625rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+@mixin text-is-m {
+    line-height: 1.125rem;
+    font-size: .875rem;
+}
+
+@mixin text-is-semibold {
+    font-weight: 600;
+}
+
+@mixin is-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin is-popup {
+    opacity: 0;
+    transform: translateY(-0.625rem);
+    transition: transform .1s, opacity .1s cubic-bezier(0, 0, .25, 1), visibility 0s linear .1s;
+    visibility: hidden;
+}
+
+
+@mixin is-heading {
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+    line-height: 1.625rem;
+}
+
+$breakpoints: (
+    small: 480px,
+    medium: 720px,
+    large: 960px,
+    wide: 1200px
+);
+
+@mixin respond-to($name) {
+    @if not map-has-key($breakpoints, $name) {
+        @warn "Warning: `#{$name}` is not a valid breakpoint name.";
+    }
+
+    @else {
+        @media (min-width: map-get($breakpoints, $name)) {
+            @content;
+        }
+    }
+}
