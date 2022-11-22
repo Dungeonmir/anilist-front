@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import Link from 'next/link'
 import React from 'react'
 import styles from './Header.module.scss'
@@ -25,7 +26,15 @@ export default function Header() {
 						</svg>
 					</Link>
 				</div>
-				<div className={styles.hamburger}>
+
+				<div
+					onClick={() => {
+						setIsHamburgerMenu(!isHamburgerMenu)
+					}}
+					className={classNames(styles.hamburger, {
+						[styles.active]: !isHamburgerMenu,
+					})}
+				>
 					<svg
 						className={styles.hamburger_svg}
 						xmlns="http://www.w3.org/2000/svg"
@@ -39,9 +48,92 @@ export default function Header() {
 						<path d="M21 4a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18zm0 7a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18zm0 7a1 1 0 0 1 0 2H3a1 1 0 0 1 0-2h18z"></path>
 					</svg>
 				</div>
+				<div
+					className={classNames(styles.dropdown_vertical, {
+						[styles.hidden]: isHamburgerMenu,
+					})}
+				>
+					<div className={styles.wrapper_content}>
+						<nav>
+							<div className={styles.section}>
+								<small>Каталог</small>
+								<ul>
+									<li>
+										<span>Популярное</span>
+									</li>
+									<li>
+										<span>Новинки</span>
+									</li>
+									<li>
+										<span>По алфавиту</span>
+									</li>
+									<li>
+										<span>Текущий сезон</span>
+									</li>
+									<li>
+										<span>Календарь релизов</span>
+									</li>
+									<li>
+										<span>Жанры</span>
+									</li>
+								</ul>
+							</div>
+							<div className={styles.section}>
+								<ul>
+									<li>
+										<span>Манга</span>
+									</li>
+									<li>
+										<span>Новости</span>
+									</li>
+									<li>
+										<span>Команда</span>
+									</li>
+								</ul>
+							</div>
+						</nav>
+					</div>
+				</div>
+				<div
+					className={classNames(styles.dropdown_horizontal, {
+						[styles.hidden]: isHamburgerMenu,
+					})}
+				>
+					<div className={styles.wrapper_content}>
+						<nav>
+							<div className={styles.section}>
+								<ul>
+									<li>
+										<span>Популярное</span>
+									</li>
+									<li>
+										<span>Новинки</span>
+									</li>
+									<li>
+										<span>По алфавиту</span>
+									</li>
+									<li>
+										<span>Текущий сезон</span>
+									</li>
+									<li>
+										<span>Календарь релизов</span>
+									</li>
+								</ul>
+							</div>
+							<div className={styles.section}>
+								<ul></ul>
+							</div>
+						</nav>
+					</div>
+				</div>
 
 				<div className={styles.left}>
-					<div className={styles.tile}>
+					<div
+						onClick={() => setIsHamburgerMenu(!isHamburgerMenu)}
+						className={classNames(styles.tile, {
+							[styles.active]: !isHamburgerMenu,
+						})}
+					>
 						<span>Каталог</span>
 					</div>
 					<div className={styles.tile}>
@@ -162,6 +254,11 @@ export default function Header() {
 					</div>
 				</div>
 			</div>
+			<div
+				className={classNames(styles.page_overlay, {
+					[styles.active]: !isHamburgerMenu,
+				})}
+			/>
 		</div>
 	)
 }
