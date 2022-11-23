@@ -8,12 +8,11 @@ export default function Header() {
 	const [isHamburgerMenu, setIsHamburgerMenu] = React.useState(false)
 
 	return (
-		<div className={styles.wrapper}>
-			<div className={styles.content}>
-				<div className={styles.logo_wrapper}>
-					<Link href="/" className={styles.logo}>
+		<div className={styles['head-container']}>
+			<div className={styles['head-content']}>
+				<div className={styles['logo-wrapper']}>
+					<Link href="/" className={styles['logo']}>
 						<svg
-							className={styles.logo_icon}
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 136 24"
 							data-t="crunchyroll-horizontal-svg"
@@ -31,12 +30,11 @@ export default function Header() {
 					onClick={() => {
 						setIsHamburgerMenu(!isHamburgerMenu)
 					}}
-					className={classNames(styles.hamburger, {
+					className={classNames(styles['hamburger'], {
 						[styles.active]: !isHamburgerMenu,
 					})}
 				>
 					<svg
-						className={styles.hamburger_svg}
 						xmlns="http://www.w3.org/2000/svg"
 						viewBox="0 0 24 24"
 						data-t="menu-svg"
@@ -49,13 +47,13 @@ export default function Header() {
 					</svg>
 				</div>
 				<div
-					className={classNames(styles.dropdown_vertical, {
+					className={classNames(styles['dropdown-vertical'], {
 						[styles.hidden]: isHamburgerMenu,
 					})}
 				>
-					<div className={styles.wrapper_content}>
+					<div className={styles['dropdown-vertical-content']}>
 						<nav>
-							<div className={styles.section}>
+							<section>
 								<small>Каталог</small>
 								<ul>
 									<li>
@@ -77,8 +75,8 @@ export default function Header() {
 										<span>Жанры</span>
 									</li>
 								</ul>
-							</div>
-							<div className={styles.section}>
+							</section>
+							<section>
 								<ul>
 									<li>
 										<span>Манга</span>
@@ -90,18 +88,18 @@ export default function Header() {
 										<span>Команда</span>
 									</li>
 								</ul>
-							</div>
+							</section>
 						</nav>
 					</div>
 				</div>
 				<div
-					className={classNames(styles.dropdown_horizontal, {
-						[styles.hidden]: isHamburgerMenu,
+					className={classNames(styles['dropdown-horizontal'], {
+						[styles['hidden']]: isHamburgerMenu,
 					})}
 				>
-					<div className={styles.wrapper_content}>
+					<div className={styles['dropdown-horizontal-content']}>
 						<nav>
-							<div className={styles.section}>
+							<section className={styles['menu-wrapper']}>
 								<ul>
 									<li>
 										<span>Популярное</span>
@@ -119,10 +117,57 @@ export default function Header() {
 										<span>Календарь релизов</span>
 									</li>
 								</ul>
-							</div>
-							<div className={styles.section}>
-								<ul></ul>
-							</div>
+							</section>
+							<section className={styles['genres-wrapper']}>
+								<small>Жанры</small>
+								<ul>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+									<li>
+										<h5>Экшен</h5>
+									</li>
+								</ul>
+							</section>
 						</nav>
 					</div>
 				</div>
@@ -155,7 +200,6 @@ export default function Header() {
 								onMouseLeave={() => setIsVisible(false)}
 							>
 								<svg
-									className={styles.icon_crown}
 									xmlns="http://www.w3.org/2000/svg"
 									viewBox="0 0 16 16"
 									data-t="premium-filled-svg"
@@ -179,7 +223,6 @@ export default function Header() {
 											<div className={styles.content}>
 												<h3>
 													<svg
-														className={styles.premium_icon}
 														xmlns="http://www.w3.org/2000/svg"
 														viewBox="0 0 24 24"
 														data-t="premium-svg"
@@ -255,7 +298,7 @@ export default function Header() {
 				</div>
 			</div>
 			<div
-				className={classNames(styles.page_overlay, {
+				className={classNames(styles['page-overlay'], {
 					[styles.active]: !isHamburgerMenu,
 				})}
 			/>
